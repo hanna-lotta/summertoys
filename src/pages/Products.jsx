@@ -1,8 +1,14 @@
-import { Link } from "react-router";
-import { ProductsList } from "../data/ProductsStore";
-import './Products.css';
+import { Link, NavLink } from "react-router";
+import { ProductsList, useProductStore } from "../data/ProductsStore";
+import './Products.css';	
+import { useState } from "react";
+
+import { addToCart } from "../data/cartStore";
+
 
 const Products = () => {
+	const setSelectedProduct = useProductStore((state) => state.setSelectedProduct);
+
 	// const [products, setProducts] = useState([]);
 	// const [loading, setLoading] = useState(true);
 	// const [error, setError] = useState(null);
@@ -36,8 +42,11 @@ const Products = () => {
 			<img src={item.img} alt={`img-${item.title}`} />
 			<p>{item.description}</p>
 			<p className="price">{item.price} kr</p>
-			<Link to={`/products/:id'${item.id}`} className="details-link">Läs mer om produkten här</Link>
-			<button>Lägg till i varukorg</button>
+			<Link to={`/products/:id'${item.id}`} className="details-link"
+			onClick={() => setSelectedProduct(item)} // Sätt vald produkt
+			>Läs mer om produkten här</Link>
+			<button onClick={() => addToCart(item.id)} className="order-button">Lägg till i varukorg</button>
+			<Link to={'/cart'} className="page-buttons">Betala</Link>
 		  </div>
 		))}
 	  </div>

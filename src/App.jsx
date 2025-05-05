@@ -9,8 +9,9 @@ function App() {
 
   return (
     <>
-      <header>
-			<nav>
+      <header className="App-header">
+		<h1>Plaskis</h1>
+			<nav className='links'>
 				<NavLink to="/" >Start</NavLink>
 				<NavLink to="/products" >Products</NavLink>
 				<NavLink to="/cart" >Cart</NavLink>

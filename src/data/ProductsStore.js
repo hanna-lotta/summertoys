@@ -1,4 +1,9 @@
+import { create } from "zustand";
 
+export const useProductStore = create((set) => ({
+  selectedProduct: null, // Håller den valda produkten
+  setSelectedProduct: (product) => set({ selectedProduct: product }), // Uppdaterar vald produkt
+}));
 
 
 const ProductsList = [
