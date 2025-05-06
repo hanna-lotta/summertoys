@@ -1,22 +1,23 @@
+import './Add.css';
 
 const Add = () => {
 	return (
-		<div>
-			<h1>Add Product</h1>
+		<div className="add-product">
+			<h1>Lägg till produkt</h1>
 			<form>
 				<div>
-					<label htmlFor="name">Name:</label>
+					<label htmlFor="name">Namn:</label>
 					<input type="text" id="name" name="name" required />
 				</div>
 				<div>
-					<label htmlFor="description">Description:</label>
+					<label htmlFor="description">Beskrivning:</label>
 					<textarea id="description" name="description" required></textarea>
 				</div>
 				<div>
-					<label htmlFor="price">Price:</label>
+					<label htmlFor="price">Pris:</label>
 					<input type="number" id="price" name="price" required />
 				</div>
-				<button type="submit">Add Product</button>
+				<button type="submit">Lägg till produkt</button>
 			</form>
 		</div>
 	);

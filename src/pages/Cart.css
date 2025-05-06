@@ -1,3 +1,4 @@
+
 .cart-container {
 	display: flex;
 	flex-direction: column;
@@ -5,7 +6,12 @@
 	justify-self: center;
 	align-items: center;
 	border: 1px solid rgb(38, 38, 255);
+	box-shadow: #0f3040 0.2rem 0.2rem 0.5rem;
+	margin: 1em;
+	padding: 1em;
 	width: 40em;
+	text-decoration: none; /* Ta bort understrykning */
+  color: inherit; /* Behåll textfärgen */
 
 	.cart-items {
 		display: flex;
@@ -16,9 +22,16 @@
 		align-self: center;
 		width: 100%;
 		border: 1px solid rgb(38, 38, 255);
+		box-shadow: #0f3040 0.2rem 0.2rem 0.5rem;
 		margin: 1em;
 		padding: 1em;
 	}
+	.cart-summary {
+		margin-top: 2em;
+		text-align: center;
+		font-size: 1.2em;
+		font-weight: bold;
+	  }
 
 
 	.page-buttons {
@@ -27,13 +40,30 @@
 		border-radius: 0.2rem;
 		color: white;
 		border: none;
-		padding: 0.31em 1.2em;
+		padding: 0.50em 1.2em;
 		text-decoration: none;
 		width: 10em;
+		text-align: center;
+		margin: 0.5em;
 	}
 	.page-buttons:hover {
 		background-color: #0f3040;
 		
+	}
+	.plus-button, .minus-button {
+		cursor: pointer;
+		background-color: #2c3e50;
+		border-radius: 0.2rem;
+		color: white;
+		border: none;
+		
+		font-size: large;
+		width: 2em;
+		text-align: center;
+		margin: 0.5em;
+	}
+	.plus-button:hover .minus-button {
+		background-color: #0f3040;
 	}
 
 

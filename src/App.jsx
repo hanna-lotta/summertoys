@@ -2,7 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { NavLink, Outlet } from 'react-router'
+import { Link, NavLink, Outlet } from 'react-router'
 import waterSplash from './assets/water-splash.svg';
 import cart from './assets/mdi--cart-outline.svg';
 import { useProductStore } from './data/ProductsStore';
@@ -25,9 +25,11 @@ function App() {
 				<NavLink to="/add" >Add</NavLink>
 				
 			</nav>
-			<div className="cart-container">
+			<div className="cart-div">
+			<Link to="/cart">
 			<img className='cart-img' src={cart} alt="cart" />
 			<span className="cart-count">{cartCount}</span> {/* Antal varor */}
+			</Link>
 			</div>
 	  </header>
 	  <main>

@@ -1,9 +1,10 @@
+import './Checkout.css';
 
 const Checkout = () => {
   return (
-	<div>
-	  <h1>Checkout</h1>
-	  <p>Checkout page content goes here.</p>
+	<div className="checkout">
+	  <h1>Kvitto</h1>
+	  <p>Tack för ditt köp</p>
 	</div>
   );
 }

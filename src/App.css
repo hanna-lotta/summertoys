@@ -21,7 +21,7 @@ header {
 		margin-right: 1.6em;
 		background-color: rgb(232, 113, 92);
 	}
-	
+	/*
 	.cart-img {
 		width: 50px;
 		height: 50px;
@@ -30,19 +30,26 @@ header {
 		position: absolute;
 		right: 0;
 
-	}
-	.cart-container {
+	}*/
+	.cart-div a{
 		position: relative;
-		display: inline-block;
+		/*display: inline-block;*/
+		display: flex;
+		align-items: center;
+		margin-left: 10em;
 	  }
-	  /*
+	  
 	  .cart-img {
 		width: 50px;
 		height: 50px;
 		margin-right: 1.6em;
 		background-color: rgb(232, 113, 92);
-		position: relative;
-	  }*/
+		/*position: absolute;
+		left: 0em;*/
+		
+		
+		
+	  }
 	  
 	  .cart-count {
 		position: absolute;

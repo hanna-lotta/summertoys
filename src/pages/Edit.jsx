@@ -1,8 +1,8 @@
-
+import './Edit.css';
 const Edit = () => {
 	return (
-		<div>
-			<h1>Edit Product</h1>
+		<div className="edit">
+			<h1>Ändra</h1>
 		</div>
 	)
 
