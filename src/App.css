@@ -12,9 +12,53 @@ header {
 	h1 {
 		margin: 0;
 		font-size: 30px;
-		margin-right: 1.6em;
+		margin-right: 0.8em;
 		color: rgb(232, 113, 92);
 	}
+	.water-img {
+		width: 50px;
+		height: 50px;
+		margin-right: 1.6em;
+		background-color: rgb(232, 113, 92);
+	}
+	
+	.cart-img {
+		width: 50px;
+		height: 50px;
+		margin-right: 1.6em;
+		background-color: rgb(232, 113, 92);
+		position: absolute;
+		right: 0;
+
+	}
+	.cart-container {
+		position: relative;
+		display: inline-block;
+	  }
+	  /*
+	  .cart-img {
+		width: 50px;
+		height: 50px;
+		margin-right: 1.6em;
+		background-color: rgb(232, 113, 92);
+		position: relative;
+	  }*/
+	  
+	  .cart-count {
+		position: absolute;
+		top: -12px;
+		right: 14px;
+		background-color: rgb(221, 39, 39);
+		color: white;
+		font-size: 15px;
+		font-weight: bold;
+		border-radius: 50%;
+		width: 23px;
+		height: 23px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	  }
 
 
 	.links {
