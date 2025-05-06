@@ -1,33 +1,37 @@
 import { Link, NavLink } from "react-router";
-import { ProductsList, useProductStore } from "../data/ProductsStore";
+import { ProductsList } from "../data/ProductsStore";
+import { useProductStore } from "../data/ProductsStore";
 import './Products.css';	
 import { useState } from "react";
 
-import { addToCart } from "../data/cartStore";
+//import { addToCart } from "../data/cartStore";
 
 
 const Products = () => {
 	const setSelectedProduct = useProductStore((state) => state.setSelectedProduct);
+	const addToCart = useProductStore((state) => state.addToCart);
+/*
+	if (!selectedProduct) {
+		return (
+		  <div>
+			<p>Ingen produkt vald.</p>
+			<Link to="/products" className="page-buttons">Tillbaka</Link>
+		  </div>
+		);
+	  }
+	
+	  return (
+		<div className="product-details">
+		  <h1>{selectedProduct.title}</h1>
+		  <img src={selectedProduct.img} alt={`img-${selectedProduct.title}`} />
+		  <p>Pris: {selectedProduct.price} kr</p>
+		  <p>Beskrivning: {selectedProduct.description}</p>
+		  <button onClick={() => addToCart(selectedProduct)} className="order-button">Lägg till i varukorg</button>
+		  <Link to="/products" className="page-buttons">Tillbaka</Link>
+		</div>
+	  );
+	};*/
 
-	// const [products, setProducts] = useState([]);
-	// const [loading, setLoading] = useState(true);
-	// const [error, setError] = useState(null);
-	// const [cart, setCart] = useState([]);
-	// const [cartCount, setCartCount] = useState(0);
-	// const [cartTotal, setCartTotal] = useState(0);
-	// const [isLoggedIn, setIsLoggedIn] = useState(false);
-	// const [user, setUser] = useState(null);
-	// const [isAdmin, setIsAdmin] = useState(false);
-	// const [isLoading, setIsLoading] = useState(true);
-	// const [isError, setIsError] = useState(false);
-	// const [isSuccess, setIsSuccess] = useState(false);
-	// const [isEditMode, setIsEditMode] = useState(false);
-	// const [isAddMode, setIsAddMode] = useState(false);
-	// const [isDeleteMode, setIsDeleteMode] = useState(false);
-	// const [isCheckoutMode, setIsCheckoutMode] = useState(false);
-	// const [isLoginMode, setIsLoginMode] = useState(false);
-	// const [isLogoutMode, setIsLogoutMode] = useState(false);
-	// const [isRegisterMode, setIsRegisterMode] = useState(false);
 
 	return (
 		<div className="products">
@@ -40,12 +44,12 @@ const Products = () => {
 		  <div className="card" key={item.id}>
 			<h2>{item.title}</h2>
 			<img src={item.img} alt={`img-${item.title}`} />
-			<p>{item.description}</p>
+			
 			<p className="price">{item.price} kr</p>
 			<Link to={`/products/:id'${item.id}`} className="details-link"
 			onClick={() => setSelectedProduct(item)} // Sätt vald produkt
 			>Läs mer om produkten här</Link>
-			<button onClick={() => addToCart(item.id)} className="order-button">Lägg till i varukorg</button>
+			<button onClick={() => addToCart(item)} className="order-button">Lägg till i varukorg</button>
 			<Link to={'/cart'} className="page-buttons">Betala</Link>
 		  </div>
 		))}

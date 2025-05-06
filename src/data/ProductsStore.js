@@ -1,10 +1,29 @@
 import { create } from "zustand";
 
-export const useProductStore = create((set) => ({
-  selectedProduct: null, // Håller den valda produkten
-  setSelectedProduct: (product) => set({ selectedProduct: product }), // Uppdaterar vald produkt
+
+const useProductStore = create((set) => ({
+  selectedProduct: null,
+  setSelectedProduct: (product) => set({ selectedProduct: product }),
+
+  cart: [], // Kundvagn
+  addToCart: (product) =>
+    set((state) => ({
+      cart: [...state.cart, product],
+    })),
+  removeFromCart: (id) =>
+    set((state) => ({
+      cart: state.cart.filter((item) => item.id !== id),
+    })),
+  clearCart: () => set({ cart: [] }),
+
+  // Lägg till i Zustand-store
+ getCartTotal: (state) =>
+	state.cart.reduce((total, item) => total + item.price, 0),
 }));
 
+
+
+//export { useProductStore };
 
 const ProductsList = [
 	{
@@ -162,7 +181,7 @@ const ProductsList = [
 		description: "Värt att veta. Klassisk skyffel i inbjudande färger. Det är inte så mycket speciellt med denna, och ändå räcker spaden i sig själv för att starta en bra grävlek. Ditt barn kan på nolltid flytta all sand till andra sidan av sandlådan och skyffla tillbaka det mesta igen. Ditt barn kan även nyfiket och fantasifullt gräva efter skatter eller gå på insektsjakt. Kanske kommer ni på att bygga ett sandslott ihop, som naturligtvis ska ha en vallgrav runt om. Det är en spännande överraskning om ni får hem spaden i blå, röd eller gul. Spaden är Svanenmärkt, lämplig för livsmedel och tål en runda i diskmaskinen. Lämpligt för barn i åldern 2 år till 7 år",
 	}
 ];
-  export {ProductsList};
+  export {ProductsList, useProductStore};
 	
 
 
