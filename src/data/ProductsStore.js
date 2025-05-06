@@ -19,6 +19,8 @@ const useProductStore = create((set) => ({
   // Lägg till i Zustand-store
  getCartTotal: (state) =>
 	state.cart.reduce((total, item) => total + item.price, 0),
+ clearCart: () => set({ cart: [] }),
+  getCartCount: (state) => state.cart.length, // Räknar antal varor i kundvagnen
 }));
 
 
