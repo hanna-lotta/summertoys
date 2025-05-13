@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useToyStore } from '../data/toyStore.js'; 
 import { useCartStore } from '../data/cartStore.js'; 
 import {useLogInStore} from '../data/LoginStore';
+import { useState } from "react";
 
 
 
@@ -17,6 +18,9 @@ const ToyList = () => {
 	  const isAdmin = useLogInStore(state => state.isLoggedIn); // Kontrollera om användaren är admin
 	  const navigate = useNavigate();
 	const addToCart = useCartStore(state => state.addToCart); // Hämta addToCart actionen
+
+	const [searchQuery, setSearchQuery] = useState('');
+	const [sortOption, setSortOption] = useState(''); 
 
 	const handleAdd = () => {
 		navigate('/add'); // Navigera till Add-sidan
@@ -42,20 +46,61 @@ const ToyList = () => {
   	return <div>Ett fel uppstod: {error}</div>;
   }
 
+    // Filtrera leksaker baserat på sökfrågan
+	const filteredToys = toys.filter((toy) =>
+		toy.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+		toy.description.toLowerCase().includes(searchQuery.toLowerCase())
+	  );
+
+	  // Sortera leksaker baserat på sorteringsalternativ
+  const sortedToys = [...filteredToys].sort((a, b) => {
+    if (sortOption === 'name-asc') {
+      return a.title.localeCompare(b.title);
+    } else if (sortOption === 'name-desc') {
+      return b.title.localeCompare(a.title);
+    } else if (sortOption === 'price-asc') {
+      return a.price - b.price;
+    } else if (sortOption === 'price-desc') {
+      return b.price - a.price;
+    }
+    return 0;
+  });
+
+
 
 return (
 	<div className="products">
 		<div className="search">
 			<label htmlFor="search">Sök efter produkter:</label>
-			<input type="text" id="search" placeholder="Sök..." />
+			<input 
+			type="text" 
+			id="search" 
+			placeholder="Sök..." 
+			value={searchQuery}
+			onChange={(e) => setSearchQuery(e.target.value)}
+			/>
 		</div>
+		<div className="sort">
+        <label htmlFor="sort">Sortera efter:</label>
+        <select
+          id="sort"
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
+        >
+          <option value="">Ingen sortering</option>
+          <option value="name-asc">Namn (A-Ö)</option>
+          <option value="name-desc">Namn (Ö-A)</option>
+          <option value="price-asc">Pris (Lägst först)</option>
+          <option value="price-desc">Pris (Högst först)</option>
+        </select>
+      </div>
 		{isAdmin && (
         <button onClick={handleAdd} className="add-button">
           Lägg till produkt
         </button>
       )}
 		<div className="products-container">
-  			{toys.map((toy) => (
+  			{filteredToys.map((toy) => (
 	  <div className="card" key={toy.id}>
 		<h2>{toy.title}</h2>
 		<img src={toy.img} alt={`img-${toy.title}`} />
