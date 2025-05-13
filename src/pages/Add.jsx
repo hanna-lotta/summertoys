@@ -2,6 +2,7 @@ import Joi from 'joi';
 import './Add.css';
 import { useToyStore } from '../data/toyStore.js';
 import { useState } from 'react';
+import { validateForm } from '../data/Validation.js';
 
 const schema = Joi.object({
 
@@ -9,14 +10,15 @@ const schema = Joi.object({
 		.min(1)
 		.required(),
 	description: Joi.string()
-		.min(5)
+		.min(10)
 		.required(),
 	price: Joi.number()
 		.positive()
 		.required(),
 
 	img: Joi.string()
-		.uri()
+		.pattern(/^https?:\/\/.+/i)
+    	.pattern(/\.(jpeg|jpg|gif|png|webp|svg)$/i)
 		.required(),
 	
 });
