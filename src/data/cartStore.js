@@ -1,8 +1,43 @@
 import { create } from "zustand";
-/*
-const useCartStore = create((set) => ({
-  cart: [],  // tom varukorg
+import { addToCart, removeFromCart,decreaseQuantity, calculateTotalPrice, getCartCount, getCartItemCountById } from "../data/cartService.js"; 
+	
 
+const useCartStore = create((set, get) => ({
+  cart: [],  
+// 'get' behövs för funktioner som läser state, t.ex. getCartCount/getTotalPrice
+  // --- Vald produkt/leksak för detaljvy ---
+  selectedToy: null, // State för den leksak som är vald för detaljvy
+
+  // Funktion för att sätta den valda leksaken
+  setSelectedToy: (toy) => set({ selectedToy: toy }),
+
+  addToCart: (toyToAdd) =>
+    set((state) => ({
+      cart: addToCart(state.cart, toyToAdd),
+    })),
+
+  removeFromCart: (id) =>
+    set((state) => ({
+      cart: removeFromCart(state.cart, id),
+    })),
+
+  decreaseQuantity: (id) =>
+    set((state) => ({
+      cart: decreaseQuantity(state.cart, id),
+    })),
+
+  getTotalPrice: () => calculateTotalPrice(get().cart),
+
+  clearCart: () => set({ cart: [] }),
+
+  getCartCount: () => getCartCount(get().cart),
+  
+  getItemQuantity: (id) => getCartItemCountById(get().cart, id),
+ 
+}));
+export { useCartStore }; 
+
+/*
   // Lägg till varor i varukorgen
   addToCart: (item) =>
     set((state) => {
@@ -23,11 +58,11 @@ const useCartStore = create((set) => ({
         };
       }
     }),
-}));
-//	export { useCartStore }; */
-import { ProductsList } from "./ProductsStore";
+}));*/
 
+//import { ProductsList } from "./ProductsStore";
 
+/*
 const useProductStore = create((set) => ({
 	selectedProduct: null,
 	setSelectedProduct: (product) => set({ selectedProduct: product }),
@@ -60,4 +95,4 @@ const addToCart = (id) => {
 
   //export { addToCart }
 
-export { useProductStore };
+//export { useProductStore }; 

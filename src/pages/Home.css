@@ -10,6 +10,19 @@
 	text-align: center;
 	
   }
+  .info-text {
+	text-align: center;
+	padding: 2em;
+	margin-bottom: 20px;
+	border: 1px solid rgb(101, 101, 105);
+	box-shadow: #0f3040 0.2rem 0.2rem 0.5rem;
+	width: 30em;
+	font-size: 1.2em;
+	font-weight: bold;
+	background-color: #e5f36a;
+	border-radius: 0.2rem;
+	color: #333;
+  }
 
   .home-img {
 	width: 50em;

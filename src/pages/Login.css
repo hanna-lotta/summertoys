@@ -20,8 +20,25 @@
 	padding: 0.5em;
 	border: 1px solid #ccc;
 	border-radius: 0.2rem;
-	width: 100%;
+	width: 95%;
 	font-size: 1em;
+  }
+  input:invalid,
+  textarea:invalid {
+	outline: none;
+	border-color: red;
+  }
+  input:invalid:focus,
+  textarea:invalid:focus {
+	box-shadow: 0 0 0.2rem red;
+  }
+  input:valid {
+	border-color: green;
+  }
+  input:focus {
+	outline: none;
+	border-color: #0f3040;
+	box-shadow: 0 0 0.2rem #0f3040;
   }
   button {
 	margin: 0.5em;
@@ -42,6 +59,10 @@
 	color: red;
 	font-size: 1em;
 	font-weight: bold;
+  }
+  input:valid:focus + .error-message,
+  textarea:invalid + .error-message {
+	display: block;
   }
   .success-message {
 	margin: 0.5em;

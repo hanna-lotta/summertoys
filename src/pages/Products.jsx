@@ -1,60 +1,66 @@
 import { Link, NavLink } from "react-router";
-import { ProductsList } from "../data/ProductsStore";
-import { useProductStore } from "../data/ProductsStore";
 import './Products.css';	
-import { useState } from "react";
+import React, { useEffect } from 'react';
+import { useToyStore } from '../data/toyStore.js'; 
+import { useCartStore } from '../data/cartStore.js'; 
 
-//import { addToCart } from "../data/cartStore";
 
 
-const Products = () => {
-	const setSelectedProduct = useProductStore((state) => state.setSelectedProduct);
-	const addToCart = useProductStore((state) => state.addToCart);
-/*
-	if (!selectedProduct) {
-		return (
-		  <div>
-			<p>Ingen produkt vald.</p>
-			<Link to="/products" className="page-buttons">Tillbaka</Link>
-		  </div>
-		);
-	  }
+const ToyList = () => {
 	
-	  return (
-		<div className="product-details">
-		  <h1>{selectedProduct.title}</h1>
-		  <img src={selectedProduct.img} alt={`img-${selectedProduct.title}`} />
-		  <p>Pris: {selectedProduct.price} kr</p>
-		  <p>Beskrivning: {selectedProduct.description}</p>
-		  <button onClick={() => addToCart(selectedProduct)} className="order-button">Lägg till i varukorg</button>
-		  <Link to="/products" className="page-buttons">Tillbaka</Link>
+	  const toys = useToyStore(state => state.toys);
+	  const isLoading = useToyStore(state => state.isLoading);
+	  const error = useToyStore(state => state.error);
+
+	  const fetchToys = useToyStore(state => state.fetchToys); 
+  		const setSelectedToy = useToyStore(state => state.setSelectedToy); // Hämta setSelectedToy actionen
+
+	const addToCart = useCartStore(state => state.addToCart); // Hämta addToCart actionen
+	//const { addToCart } = useCartStore();
+	//const { getCartCount } = useCartStore();
+
+	const getCartCount = useCartStore(state => state.cart.length); // Hämta antalet produkter i kundvagnen
+	const cart = useCartStore(state => state.cart); // Hämta kundvagnen
+	const getItemQuantity = useCartStore(state => state.getItemQuantity);
+  
+	useEffect(() => {
+	  fetchToys();
+	}, []);
+
+  if (isLoading) {
+    return <div>Laddar leksaker...</div>;
+  }
+
+  if (error) {
+  	return <div>Ett fel uppstod: {error}</div>;
+  }
+
+
+return (
+	<div className="products">
+		<div className="search">
+			<label htmlFor="search">Sök efter produkter:</label>
+			<input type="text" id="search" placeholder="Sök..." />
 		</div>
-	  );
-	};*/
-
-
-	return (
-		<div className="products">
-			<div className="search">
-				<label htmlFor="search">Sök efter produkter:</label>
-				<input type="text" id="search" placeholder="Sök..." />
-			</div>
-			<div className="products-container">
-	  {ProductsList.map((item) => (
-		  <div className="card" key={item.id}>
-			<h2>{item.title}</h2>
-			<img src={item.img} alt={`img-${item.title}`} />
-			
-			<p className="price">{item.price} kr</p>
-			<Link to={`/products/:id'${item.id}`} className="details-link"
-			onClick={() => setSelectedProduct(item)} // Sätt vald produkt
-			>Läs mer om produkten här</Link>
-			<button onClick={() => addToCart(item)} className="order-button">Lägg till i varukorg</button>
-			<Link to={'/cart'} className="page-buttons">Betala</Link>
-		  </div>
-		))}
+		<div className="products-container">
+  {toys.map((toy) => (
+	  <div className="card" key={toy.id}>
+		<h2>{toy.title}</h2>
+		<img src={toy.img} alt={`img-${toy.title}`} />
+		<p className="price">{toy.price} kr</p>
+		
+		<Link to={`/products/${toy.id}`} className="details-link"
+		onClick={() => setSelectedToy(toy)} // Sätt vald produkt
+		>Läs mer om produkten här</Link>
+		<button onClick={() => addToCart(toy)} className="order-button">Lägg till i varukorg</button>
+		<Link to={'/cart'} className="page-buttons">Betala</Link>
 	  </div>
-	</div>
-	);
+	))}
+  </div>
+</div>
+);
 }
-export default Products;
+
+
+export default ToyList;
+

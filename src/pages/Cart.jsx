@@ -1,24 +1,32 @@
 import { Link } from "react-router"
-import { ProductsList } from "../data/ProductsStore"
-import { useProductStore } from "../data/ProductsStore";
+//import { ProductsList } from "../data/ProductsStore"
+//import { useProductStore } from "../data/ProductsStore";
 import './Cart.css'
+import { useToyStore } from "../data/toyStore";
+import { useCartStore } from "../data/cartStore";
+import { shallow } from "zustand/shallow"; // <-- Importera shallow för säkra selektorer
 
 
-const Cart = () => {
-	const cart = useProductStore((state) => state.cart);
-	const addToCart = useProductStore((state) => state.addToCart); 
-	const setSelectedProduct = useProductStore((state) => state.setSelectedProduct);
-  const removeFromCart = useProductStore((state) => state.removeFromCart);
-  const decreaseQuantity = useProductStore((state) => state.decreaseQuantity);
-  const getTotalPrice = useProductStore((state) => state.getTotalPrice);
 
-  const totalPrice = getTotalPrice();
+  const Cart = () => {
+	
+	// Använd shallow eftersom vi selekterar flera värden, inklusive en array (cart)
+	const cart = useCartStore(state => state.cart);
+	const addToCart = useCartStore(state => state.addToCart);
+	const removeFromCart = useCartStore(state => state.removeFromCart);
+	const decreaseQuantity = useCartStore(state => state.decreaseQuantity);
+	const getTotalPrice = useCartStore(state => state.getTotalPrice);
+	//const clearCart = useCartStore(state => state.clearCart);
+	const getCartCount = useCartStore(state => state.getCartCount);
+	const getItemQuantity = useCartStore(state => state.getItemQuantity);
+	//const setSelectedToy = useToyStore(state => state.setSelectedToy); // Ta bort om den inte behövs  
 
-  console.log("Cart:", cart);
-  console.log("Total Price:", totalPrice);
+ 	const totalPrice = getTotalPrice();
   
-
-
+  
+	console.log("Cart:", cart); 
+	console.log("Total Price:", totalPrice); 
+  
   return (
     <div className="cart-container">
       {cart.length === 0 ? (
@@ -30,12 +38,12 @@ const Cart = () => {
             <p className="price">{item.price} kr</p>
 			<p>Antal: {item.quantity}</p>
 			<div>
-			<button className="plus-button" 
-			onClick={() => addToCart(item)} // Öka antal
-			>+</button>
 			<button className="minus-button"
 			onClick={() => decreaseQuantity(item.id)} // Minska antal
 			>-</button>
+			<button className="plus-button" 
+			onClick={() => addToCart(item)} // Öka antal
+			>+</button>
 			</div>
             <button
               className="page-buttons"
@@ -54,21 +62,5 @@ const Cart = () => {
     </div>
   );
 
-  /*
-  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
-
-  return (
-	<div className="cart-container">
-
-	  {ProductsList.map((item) => (
-		  <div className="cart-items" key={item.id}>
-			<h2>{item.title}</h2>
-			<p className="price">{item.price} kr</p>
-			<Link to={'/products'} className="page-buttons">Tillbaka</Link>
-			<button className="page-buttons">Betala</button>
-		  </div>
-		))}
-	  </div>
-  )*/
 }
 export default Cart

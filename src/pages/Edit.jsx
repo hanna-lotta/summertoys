@@ -1,104 +1,102 @@
 import './Edit.css';
+import { addDoc, deleteDoc, getDocs, collection, doc } from "firebase/firestore";
+import { db } from "../data/database"; // Importera din Firestore-instans
+import { validateForm } from '../data/Validation';
+import React, { useState, useEffect } from "react";
+import { useToyStore } from "../data/toyStore";
+import { useParams, useNavigate } from "react-router";
+
+
 const Edit = () => {
-	return (
-		<div className="edit">
-			<h1>Ändra</h1>
-		</div>
-	)
-
-	/*
-	const { id } = useParams();
-	const [product, setProduct] = useState(null);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
-	const navigate = useNavigate();
 	
-	useEffect(() => {
-		const fetchProduct = async () => {
-			try {
-				const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-				if (!response.ok) {
-					throw new Error('Network response was not ok');
-				}
-				const data = await response.json();
-				setProduct(data);
-			} catch (error) {
-				setError(error);
-			} finally {
-				setLoading(false);
-			}
-		};
+	const { message, formIsValid } = validateForm();
 
-		fetchProduct();
-	}, [id]);
-	const handleChange = (e) => {
-		const { name, value } = e.target;
-		setProduct((prevProduct) => ({
-			...prevProduct,
-			[name]: value,
-		}));
-	};
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		try {
-			const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
-				method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(product),
-			});
-			if (!response.ok) {
-				throw new Error('Network response was not ok');
-			}
-			navigate(`/products/${id}`);
-		} catch (error) {
-			setError(error);
-		}
-	};
-	if (loading) return <div>Loading...</div>;
-	if (error) return <div>Error: {error.message}</div>;
-	 function Edit() {
-		return (
-			<div className="edit">
-				<h1>Edit Product</h1>
-				<form onSubmit={handleSubmit}>
-					<div>
-						<label htmlFor="title">Title:</label>
-						<input
-							type="text"
-							id="title"
-							name="title"
-							value={product.title}
-							onChange={handleChange}
-							required
-						/>
-					</div>
-					<div>
-						<label htmlFor="description">Description:</label>
-						<textarea
-							id="description"
-							name="description"
-							value={product.description}
-							onChange={handleChange}
-							required
-						></textarea>
-					</div>
-					<div>
-						<label htmlFor="price">Price:</label>
-						<input
-							type="number"
-							id="price"
-							name="price"
-							value={product.price}
-							onChange={handleChange}
-							required
-						/>
-					</div>
-					<button type="submit">Update Product</button>
-				</form>
-			</div>
-		);
-	}*/
-	}
-	export default Edit;
+  const { id } = useParams(); // Hämta leksakens ID från URL:en
+  const navigate = useNavigate();
+
+ const toys = useToyStore((state) => state.toys); // Hämta den valda leksaken från Zustand
+ const updateToy = useToyStore((state) => state.updateToy); // Hämta updateToy-funktionen från Zustand
+
+  const [toy, setToy] = useState(null);
+
+  console.log("toys:", toys);
+  console.log("updateToy:", updateToy);
+  
+
+  useEffect(() => {
+    const toyToEdit = toys.find((t) => t.id === id);
+    if (toyToEdit) {
+      setToy(toyToEdit);
+    }
+  }, [id, toys]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setToy((prevToy) => ({
+      ...prevToy,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await updateToy(toy); // Uppdatera leksaken i Firestore och Zustand
+    navigate("/products"); // Navigera tillbaka till produktsidan
+  };
+
+  if (!toy) return <div>Laddar...</div>; 
+
+  return (
+    <div className='edit'>
+      <h1>Edit Toy</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="title">Title:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={toy.title}
+            onChange={handleChange}
+            required
+          />
+        </div>
+		<div>
+		  <label htmlFor="img">Image URL:</label>
+		  <input
+			type="text"
+			id="img"
+			name="img"
+			value={toy.img}
+			onChange={handleChange}
+			required
+		  />
+		</div>
+        <div>
+          <label htmlFor="description">Description:</label>
+          <textarea
+            id="description"
+            name="description"
+            value={toy.description}
+            onChange={handleChange}
+            required
+          ></textarea>
+        </div>
+        <div>
+          <label htmlFor="price">Price:</label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            value={toy.price}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit">Update Toy</button>
+      </form>
+    </div>
+  ); 
+};
+
+export default Edit;
