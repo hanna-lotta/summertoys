@@ -15,24 +15,20 @@ const ToyList = () => {
 	  const fetchToys = useToyStore(state => state.fetchToys); 
   	  const setSelectedToy = useToyStore(state => state.setSelectedToy); 
 	  const removeToy = useToyStore(state => state.removeToy);
-	  const isAdmin = useLogInStore(state => state.isLoggedIn); // Kontrollera om användaren är admin
+	  const isAdmin = useLogInStore(state => state.isLoggedIn); 
 	  const navigate = useNavigate();
-	const addToCart = useCartStore(state => state.addToCart); // Hämta addToCart actionen
+	const addToCart = useCartStore(state => state.addToCart); 
 
 	const [searchQuery, setSearchQuery] = useState('');
 	const [sortOption, setSortOption] = useState(''); 
 
 	const handleAdd = () => {
-		navigate('/add'); // Navigera till Add-sidan
+		navigate('/add'); 
 	  };
 	const handleEdit = (id) => {
-		navigate(`/edit/${id}`); // Navigera till Edit-sidan med leksakens ID
+		navigate(`/edit/${id}`); 
 	  }
 	
-/*
-	const getCartCount = useCartStore(state => state.cart.length); // Hämta antalet produkter i kundvagnen
-	const cart = useCartStore(state => state.cart); // Hämta kundvagnen
-	const getItemQuantity = useCartStore(state => state.getItemQuantity);*/
   
 	useEffect(() => {
 	  fetchToys();
@@ -102,14 +98,16 @@ return (
 		<div className="products-container">
   			{filteredToys.map((toy) => (
 	  <div className="card" key={toy.id}>
-		<h2>{toy.title}</h2>
-		<img src={toy.img} alt={`img-${toy.title}`} />
+		<h2 className="card-title">{toy.title}</h2>
+		<img className="card-img" src={toy.img} alt={`img-${toy.title}`} />
 		<p className="price">{toy.price} kr</p>
 		<Link to={`/products/${toy.id}`} className="details-link"
 		onClick={() => setSelectedToy(toy)} // Sätt vald produkt
-		>Läs mer om produkten här</Link>
-		<button onClick={() => addToCart(toy)} className="order-button">Lägg till i varukorg</button>
+		>Läs mer</Link>
+		<div className="page-buttons-container">
+		<button onClick={() => addToCart(toy)} className="page-buttons">Lägg till</button>
 		<Link to={'/cart'} className="page-buttons">Betala</Link>
+		</div>
 		{isAdmin && (
               <div className="admin-buttons">
                 <button onClick={() => handleEdit(toy.id)}>Ändra</button>

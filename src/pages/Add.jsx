@@ -3,6 +3,8 @@ import './Add.css';
 import { useToyStore } from '../data/toyStore.js';
 import { useState } from 'react';
 import { validateForm } from '../data/Validation.js';
+import { useNavigate } from 'react-router';
+
 
 const schema = Joi.object({
 
@@ -32,6 +34,7 @@ const Add = () => {
 		img: '',
 	  });
 	  const [errors, setErrors] = useState({});
+	  const navigate = useNavigate();
 	
 	  const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -80,7 +83,6 @@ const Add = () => {
 					value={formData.name}
 					onChange={handleChange}
 					placeholder="Skriv produktnamn här"
-					//pattern="^[a-zA-Z0-9]{3,30}$"
 					required />
 					{/*<div>
 					<p className='error-message'>Namn måste vara mellan 3 och 30 tecken långt och får endast innehålla bokstäver och siffror.</p>
