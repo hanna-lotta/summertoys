@@ -6,25 +6,6 @@ import { validateForm } from '../data/Validation.js';
 import { useNavigate } from 'react-router';
 
 
-const schema = Joi.object({
-
-	title: Joi.string()
-		.min(1)
-		.required(),
-	description: Joi.string()
-		.min(10)
-		.required(),
-	price: Joi.number()
-		.positive()
-		.required(),
-
-	img: Joi.string()
-		.pattern(/^https?:\/\/.+/i)
-    	.pattern(/\.(jpeg|jpg|gif|png|webp|svg)$/i)
-		.required(),
-	
-});
-
 const Add = () => {
 	const addToy = useToyStore(state => state.addToy); 
 	const [formData, setFormData] = useState({
@@ -33,6 +14,15 @@ const Add = () => {
 		price: '',
 		img: '',
 	  });
+	  const [touched, setTouched] = useState({});
+	  const handleBlur = (e) => {
+		const { name } = e.target;
+		setTouched((prevTouched) => ({
+		  ...prevTouched,
+		  [name]: true,
+		}));
+	  };
+	  const {message, css, formIsValid} = validateForm(formData, touched);
 	  const [errors, setErrors] = useState({});
 	  const navigate = useNavigate();
 	
@@ -43,9 +33,15 @@ const Add = () => {
 		  [name]: value,
 		}));
 	  };
+
+/*
 	  const handleSubmit = async (e) => {
 		e.preventDefault();
-		navigate("/products"); // Navigera tillbaka till produktsidan
+		if (!formIsValid) {
+      alert('Fyll i alla fält korrekt innan du skickar in formuläret.');
+      return;
+    }
+		
 	
 		// Validera formulärdata med Joi
 		const { error } = schema.validate(formData, { abortEarly: false });
@@ -58,96 +54,122 @@ const Add = () => {
 		  return;
 		}
 	
-		setErrors({}); // Rensa eventuella tidigare fel
+		setErrors({}); // Rensa eventuella tidigare fel */
 
-		// Lägg till leksaken i Firestore
+
+
+		const submitForm = async (e) => {
+			e.preventDefault();
+			if (formIsValid) {
 		try {
 			await addToy(formData);
 			alert('Produkten har lagts till!');
-			setFormData({ name: '', description: '', price: '', img: '' }); // Återställ formuläret
+			setFormData({ title: '', description: '', price: '', img: '' }); // Återställ formuläret
+			navigate("/products"); // Navigera tillbaka till produktsidan
 		  } catch (err) {
 			console.error('Ett fel uppstod vid tillägg av produkt:', err);
 		  }
-		};
+		  	} else {
+				alert('Fyll i alla fält korrekt innan du skickar in formuläret.');
+			
+			}
+		}
 
 	return (
 		<div className="add-product">
 			<h1>Lägg till produkt</h1>
-			<form onSubmit={handleSubmit}>
+			 {/* Debug: visa state */}
+    <div style={{ fontSize: "0.8em", color: "#888" }}>
+      {JSON.stringify(message)}
+      <br />
+      {JSON.stringify(touched)}
+    </div>
+			<form onSubmit={submitForm}>
 				<div>
 					<label htmlFor="title">Titel:</label>
 					<input 
+					className={css.title ? css.title : ''} 
 					type="text" 
 					id="title"
 					name="title" 
-					value={formData.name}
+					value={formData.title}
 					onChange={handleChange}
+					onBlur={handleBlur}
 					placeholder="Skriv produktnamn här"
 					required />
-					{/*<div>
-					<p className='error-message'>Namn måste vara mellan 3 och 30 tecken långt och får endast innehålla bokstäver och siffror.</p>
-					</div>*/}
-					{errors.name && <p className='error-message'>{errors.name}</p>}
+					<div>
+						{touched.title && message.title && (
+					<p className='error-message'>{message.title}</p>
+						)}
+					</div>
 				</div>
 				<div>
 					<label htmlFor="img">Bild:</label>
-					<input type="text" 
+					<input 
+					className={css.img}
+					type="text" 
 					id="img" 
 					name="img" 
 					value={formData.img}
 					onChange={handleChange}
+					onBlur={handleBlur}
 					placeholder="Skriv bildlänk här"
 					//pattern="https?://.+\.(jpg|jpeg|png|gif)$"
 					required />
-					{/*<div>
-					<p className='error-message'>URL måste vara en giltig bildlänk.</p>
-					</div>*/}
-					{errors.img && <p className='error-message'>{errors.img}</p>}
+					<div>
+						{touched.img && message.img && (
+					<p className='error-message'>{message.img}</p>
+						)}
+					</div>
 				</div>
 				<div>
 					<label htmlFor="description">Beskrivning:</label>
 					<textarea 
+					className={css.description}
 					id="description" 
 					name="description" 
+					rows="5"
 					value={formData.description}
 					onChange={handleChange}
+					onBlur={handleBlur}
 					placeholder="Skriv produktbeskrivning här"
-					//pattern="^[a-zA-Z0-9]{3,30}$"
-					//minLength="3"
-					//maxLength="30"
-					required
+					required 
 					></textarea>
-					{/*
 					<div>
-					<p className='error-message'>Beskrivning måste vara mellan 3 och 30 tecken långt och får endast innehålla bokstäver och siffror.</p>
-					</div>*/}
-					{errors.description && <p className='error-message'>{errors.description}</p>}
+						{touched.description && message.description && (
+					<p className='error-message'>{message.description}</p>
+						)}
+					</div>
 				</div>
 				<div>
 					<label htmlFor="price">Pris:</label>
 					<input 
+					className={css.price}
 					type="number" 
 					id="price" 
 					name="price" 
 					value={formData.price}
 					onChange={handleChange}
+					onBlur={handleBlur}
 					placeholder="Skriv produktpris här"
-					//pattern="^[0-9]+$"
-					//min="1"
-					//max="10000"
 					required 
 					/>
-					{/*
+					
 					<div>
-					<p className='error-message'>Priset måste vara ett positivt heltal.</p>
-					</div>*/}
-					{errors.price && <p className='error-message'>{errors.price}</p>}
+						{touched.price && message.price && (
+					<p className='error-message'>{message.price}</p>
+						)}
+					</div>
 				</div>
 				<div>
-					<button type="submit">Lägg till produkt</button>
+					<button type="submit"
+					disabled={!formIsValid}
+					onClick={submitForm}
+					>Lägg till produkt</button>
 				</div>
 			</form>
 		</div>
 	);
+	
 }
 export default Add;

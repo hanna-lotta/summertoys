@@ -7,7 +7,7 @@
   justify-self: center;
   padding: 1em;
   margin: 1em;
-  border: 1px solid rgb(38, 38, 255);
+  border: 1px solid #ccc;
   box-shadow: #0f3040 0.2rem 0.2rem 0.5rem;
   width: 40em;
   text-align: start;
@@ -21,6 +21,15 @@
 
   .add-product:hover {
 	background-color: #e0e0e0;
+  }
+  textarea {
+	width: 95%;
+	height: 10em;
+	padding: 0.5em;
+	border: 1px solid #ccc;
+	border-radius: 0.2rem;
+	font-size: 1.2em;
+	margin: 0.5em;
   }
   label {
 	margin: 0.5em;
@@ -36,17 +45,22 @@
 	width: 95%;
 	font-size: 1em;
   }
-  input:invalid,
-  textarea:invalid {
+   input.invalid,
+  textarea.invalid {
 	outline: none;
-	border-color: red;
+	border-color: rgb(255, 0, 0);
   }
   input:invalid:focus,
   textarea:invalid:focus {
-	box-shadow: 0 0 0.2rem red;
+	box-shadow: 0 0 0.2rem rgb(255, 0, 0);;
   }
-  input:valid {
-	border-color: green;
+  input.valid, texarea.valid {
+	outline: none;
+	border-color: rgb(0, 128, 0);
+  }
+  input:valid:focus, textarea:valid:focus {
+	outline: none;
+	border-color: rgb(0, 128, 0);
   }
   input:focus {
 	outline: none;
@@ -73,20 +87,24 @@
   button:hover {
 	background-color: #0f3040;
   }
+  button:disabled {
+	background-color: #ccc;
+	
+  }
   .error-message {
 	margin: 0.5em;
-	color: red;
+	color: rgb(255, 0, 0);;
 	font-size: 1em;
 	font-weight: bold;
+	
   }
-  .success-message {
-	margin: 0.5em;
-	color: green;
-	font-size: 1em;
-	font-weight: bold;
-  }
+  /*
+  :invalid + .error-message {
+	display: block;
+  }*/
 
 }
+
 
 
 
