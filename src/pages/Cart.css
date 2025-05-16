@@ -5,7 +5,7 @@
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
-	border: 1px solid rgb(38, 38, 255);
+	border: 1px solid #ccc;
 	box-shadow: #0f3040 0.2rem 0.2rem 0.5rem;
 	margin: 1em;
 	padding: 1em;
@@ -21,7 +21,6 @@
 		align-items: center;
 		align-self: center;
 		width: 100%;
-		border: 1px solid rgb(38, 38, 255);
 		box-shadow: #0f3040 0.2rem 0.2rem 0.5rem;
 		margin: 1em;
 		padding: 1em;

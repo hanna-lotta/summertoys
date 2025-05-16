@@ -6,9 +6,9 @@
   justify-self: center;
   padding: 1em;
   margin: 1em;
-  border: 1px solid rgb(38, 38, 255);
+  border: 1px solid #ccc;
   box-shadow: #0f3040 0.2rem 0.2rem 0.5rem;
-  width: 40em;
+  max-width: 40em;
 
   label {
 	margin: 0.5em;
@@ -64,10 +64,39 @@
   textarea:invalid + .error-message {
 	display: block;
   }
-  .success-message {
-	margin: 0.5em;
-	color: green;
-	font-size: 1em;
-	font-weight: bold;
+/*
+@media (min-width: 320px) and (max-width: 600px) {
+  .login {
+    width: 300px;
+    font-size: 1em;
+    padding: 0.5em;
   }
 }
+*/
+
+/* Media query för 320px till 600px */
+/*
+@media (min-width: 320px) and (max-width: 600px) {
+  .login {
+    width: 95vw;
+    font-size: 1em;
+    padding: 0.5em;
+  }
+}
+*/
+/* Media query för 601px till 1024px */
+/*
+@media (min-width: 601px) and (max-width: 1024px) {
+  .login {
+    width: 80vw;
+    font-size: 1.1em;
+    padding: 1em;
+  }
+
+}
+*/
+}
+
+
+
+

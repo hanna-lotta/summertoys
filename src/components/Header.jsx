@@ -2,6 +2,7 @@ import { Link, NavLink } from 'react-router';
 import { useCartStore } from '../data/cartStore';
 import cart from '../assets/mdi--cart-outline.svg';
 import waterSplash from '../assets/water-splash.svg';
+import './Header.css';
 
 const Header = () => {
   const cartCount = useCartStore((state) =>
@@ -10,16 +11,13 @@ const Header = () => {
 
   return (
     <header className="App-header">
+		<NavLink to="/" className={"logo-link"}>
+	<div  className="logo-div">
       <h1>Plaskis</h1>
       <img className="water-img" src={waterSplash} alt="water-splash-image" />
-      <nav className="links">
-        <NavLink to="/">Start</NavLink>
-        <NavLink to="/products">Products</NavLink>
-        <NavLink to="/cart">Cart</NavLink>
-        <NavLink to="/checkout">Checkout</NavLink>
-        <NavLink to="/login">Login</NavLink>
-        <NavLink to="/edit/:id">Edit</NavLink>
-        <NavLink to="/add">Add</NavLink>
+     </div>
+		</NavLink>
+       <nav className="links">
       </nav>
       <div className="cart-div">
         <Link to="/cart">
@@ -30,5 +28,7 @@ const Header = () => {
     </header>
   );
 };
+
+
 
 export default Header;

@@ -34,29 +34,6 @@ const Add = () => {
 		}));
 	  };
 
-/*
-	  const handleSubmit = async (e) => {
-		e.preventDefault();
-		if (!formIsValid) {
-      alert('Fyll i alla fält korrekt innan du skickar in formuläret.');
-      return;
-    }
-		
-	
-		// Validera formulärdata med Joi
-		const { error } = schema.validate(formData, { abortEarly: false });
-		if (error) {
-		  const validationErrors = {};
-		  error.details.forEach((detail) => {
-			validationErrors[detail.path[0]] = detail.message;
-		  });
-		  setErrors(validationErrors);
-		  return;
-		}
-	
-		setErrors({}); // Rensa eventuella tidigare fel */
-
-
 
 		const submitForm = async (e) => {
 			e.preventDefault();
@@ -78,12 +55,6 @@ const Add = () => {
 	return (
 		<div className="add-product">
 			<h1>Lägg till produkt</h1>
-			 {/* Debug: visa state */}
-    <div style={{ fontSize: "0.8em", color: "#888" }}>
-      {JSON.stringify(message)}
-      <br />
-      {JSON.stringify(touched)}
-    </div>
 			<form onSubmit={submitForm}>
 				<div>
 					<label htmlFor="title">Titel:</label>

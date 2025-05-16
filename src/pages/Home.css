@@ -10,6 +10,20 @@
 	text-align: center;
 	
   }
+  .go-to-shop {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #4193e5;
+	padding: 1em;
+	margin-top: 1em;
+	color: rgb(13, 13, 13);
+	text-decoration: none;
+	border-radius: 0.2rem;
+	width: 10em;
+	font-size: 1.2em;
+	font-weight: bold;
+  }
   .info-text {
 	text-align: center;
 	padding: 2em;

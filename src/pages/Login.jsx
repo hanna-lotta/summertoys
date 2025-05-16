@@ -26,7 +26,7 @@ const Login = () => {
 	const isLoggedIn = useLogInStore((state) => state.isLoggedIn);
 	const navigate = useNavigate();
 
-	const [formData, setFormData] = useState({ username: '', password: 'leka' });
+	const [formData, setFormData] = useState({ username: 'admin', password: 'password' });
 	const [errors, setErrors] = useState({});
 
 	const handleChange = (e) => {
