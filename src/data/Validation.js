@@ -13,11 +13,10 @@ const schema = Joi.object({
 		.required(),
 
 	img: Joi.string()
-		.pattern(/^https?:\/\/.+/i)
-    	.pattern(/\.(jpeg|jpg|gif|png|webp|svg)$/i)
+		.pattern(/^https?:\/\/.*\.(jpeg|jpg|gif|png|webp|svg)([/?].*)?$/i)
 		.required(),
 	
-});
+}).unknown(true) // Tillåter okända fält
 
 function validateForm(data, touched = {}) {
 	const results = schema.validate(data, {abortEarly: false});
@@ -41,12 +40,7 @@ function validateForm(data, touched = {}) {
   if (touched.img && (!results.error || !results.error.details.some(e => e.context.key === 'img'))) {
     css.img = 'valid';
   }
-/*
-	if (touched.title) css.title = 'valid';
-	if (touched.description) css.description = 'valid';
-	if (touched.price) css.price = 'valid';
-	if (touched.img) css.img = 'valid';
-*/
+
 	let message = {
 		title: '',
 		description: '',
@@ -76,33 +70,5 @@ function validateForm(data, touched = {}) {
     return { message, css, formIsValid };
 }
 
-
-	/*if (results.error) {
-		 results.error.details.forEach(element => {
-			if (!touched[element.context.key]) 
-				return;
-				css[element.context.key] = 'invalid';
-
-			if (element.context.key === 'title') {
-				message.title = 'skriv minst 2 tecken';
-				//return `Minst ${element.context.limit} tecken krävs.`;
-			} else if (element.context.key === 'description') {
-				message.description = 'skriv minst 10 tecken';
-				//return `Minst ${element.context.limit} tecken krävs.`;
-			}
-			else if (element.context.key === 'price') {
-				message.price = 'skriv ett nummer';
-				//return `Minst ${element.context.limit} tecken krävs.`;
-			}
-			else if (element.context.key === 'img') {
-				message.img = 'måste vara en giltig URL';
-				//return `Minst ${element.context.limit} tecken krävs.`;
-			}
-			
-		}); 	//=> detail.message);
-	}
-		const formIsValid = !results.error;
-		return {message, css, formIsValid };
-	} */
 
 export { validateForm };

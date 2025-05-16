@@ -59,7 +59,7 @@ const Add = () => {
 				<div>
 					<label htmlFor="title">Titel:</label>
 					<input 
-					className={css.title ? css.title : ''} 
+					className={css.title} 
 					type="text" 
 					id="title"
 					name="title" 

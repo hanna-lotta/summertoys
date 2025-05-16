@@ -26,7 +26,7 @@ const Login = () => {
 	const isLoggedIn = useLogInStore((state) => state.isLoggedIn);
 	const navigate = useNavigate();
 
-	const [formData, setFormData] = useState({ username: 'admin', password: 'password' });
+	const [formData, setFormData] = useState({ username: '', password: '' });
 	const [errors, setErrors] = useState({});
 
 	const handleChange = (e) => {
@@ -40,22 +40,40 @@ const Login = () => {
 		e.preventDefault();
 		// Validera formulärdata med Joi
 		const { error } = schema.validate(formData, { abortEarly: false });
-		if (error) {
+			if (error) {
 			const validationErrors = {};
 			error.details.forEach((detail) => {
-				validationErrors[detail.path[0]] = detail.message;
+				const key = detail.path[0];
+      		if (key === "username") {
+        	validationErrors[key] = "Användarnamn måste vara 3-20 tecken och bara bokstäver/siffror.";
+      		} else if (key === "password") {
+        	validationErrors[key] = "Lösenordet måste vara 3-30 tecken och bara bokstäver/siffror.";
+      		} else {
+        	validationErrors[key] = detail.message; // fallback
+     		 }
+				
 			});
 			setErrors(validationErrors);
 			return;
 		}
 
-		setErrors({}); // Rensa eventuella tidigare fel
+		// Kontrollera om användarnamn och lösenord är rätt
+  if (
+    formData.username !== "admin" ||
+    formData.password !== "password"
+  ) {
+    setErrors({
+      username: formData.username !== "admin" ? "Fel användarnamn" : "",
+      password: formData.password !== "password" ? "Fel lösenord" : "",
+    });
+    return;
+  }
 
+		setErrors({}); // Rensa eventuella tidigare fel
 		loginAsAdmin(); 
 		navigate("/products"); 
 	};
-	//TODO?
-	//const { message, formIsValid } = validateForm();
+	
 
 	return (
 		<div className="login">
@@ -74,10 +92,6 @@ const Login = () => {
 					required 
 					/>
 					{errors.username && <p className="error-message">{errors.username}</p>}
-					{/*
-					<div>
-						<p className="error-message">Användarnamn måste vara mellan 3 och 20 tecken långt och får endast innehålla bokstäver och siffror.</p>
-					</div>*/}
 				</div>
 				<div>
 					<label htmlFor="password">Lösenord:</label>
@@ -91,10 +105,6 @@ const Login = () => {
 					required 
 					/>
 					{errors.password && <p className="error-message">{errors.password}</p>}
-				{/*
-				<div>
-					<p className="error-message">Lösenordet måste vara mellan 3 och 30 tecken långt och får endast innehålla bokstäver och siffror.</p>
-				</div>*/}
 				</div>
 				<button type="submit">Logga in</button>
 			</form>
