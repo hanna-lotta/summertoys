@@ -36,16 +36,41 @@ const Login = () => {
 			...prevData,
 			[name]: value,
 		}));
+		 // Ta bort felmeddelande om fältet blir rätt
+    setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+    }));
 	};
 
 
     const handleBlur = (e) => {
-        const { name } = e.target;
+        const { name, value } = e.target;
         setTouched((prev) => ({
             ...prev,
             [name]: true,
         }));
+	 if (name === "username") {
+        if (value !== "admin") {
+            setErrors((prev) => ({
+                ...prev,
+                username: "Fel användarnamn",
+            }));
+            return;
+        }
+    }
+
+    if (name === "password") {
+        if (value !== "password") {
+            setErrors((prev) => ({
+                ...prev,
+                password: "Fel lösenord",
+            }));
+            return;
+        }
+    }
     };
+	
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -56,9 +81,9 @@ const Login = () => {
 			error.details.forEach((detail) => {
 				const key = detail.path[0];
       		if (key === "username") {
-        	validationErrors[key] = "Användarnamn måste vara 3-20 tecken och bara bokstäver/siffror.";
+        	validationErrors[key] = "Fel användarnamn";
       		} else if (key === "password") {
-        	validationErrors[key] = "Lösenordet måste vara 3-30 tecken och bara bokstäver/siffror.";
+        	validationErrors[key] = "Fel lösenord";
       		} else {
         	validationErrors[key] = detail.message; // fallback
      		 }

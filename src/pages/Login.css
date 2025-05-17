@@ -22,13 +22,13 @@
 	width: 95%;
 	font-size: 1em;
   }
- 
-  imput.error {
-	margin: 0.5em;
-	color: red;
+  
+  .imput.error {
+	outline: none;
+	border-color: rgb(252, 5, 5);
   }
   input:valid {
-	border-color: green;
+	border-color: rgb(2, 126, 2);
   }
   input:focus {
 	outline: none;
@@ -55,10 +55,12 @@
 	font-size: 1em;
 	font-weight: bold;
   }
+}
+  /*
   input:valid:focus + .error-message,
   textarea:invalid + .error-message {
 	display: block;
-  }
+  }*/
 /*
 @media (min-width: 320px) and (max-width: 600px) {
   .login {
@@ -90,7 +92,7 @@
 
 }
 */
-}
+
 
 
 

@@ -216,6 +216,43 @@
 		box-sizing: border-box;
 		
 	}
+	.search {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		align-self: center;
+	}
+	.search label {
+		margin-bottom: 0.3em;
+		margin-right: 0;
+		display: block;
+		align-self: center;
+		text-align: left;
+		font-size: 1em;
+	}
+	.search input {
+		margin-left: 0;
+		width: 50%;
+	}
+	.sort {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		
+	}
+	.sort label {
+		margin-bottom: 0.3em;
+		margin-right: 0;
+		display: block;
+		text-align: left;
+		align-self: center;
+		font-size: 1em;
+	}
+	.sort select {
+		margin-left: 0;
+		width: 50%;
+	}
+
 	
 }
 
