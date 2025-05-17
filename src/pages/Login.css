@@ -22,16 +22,7 @@
 	width: 95%;
 	font-size: 1em;
   }
-  /*
-  input:invalid,
-  textarea:invalid {
-	outline: none;
-	border-color: red;
-  }
-  input:invalid:focus,
-  textarea:invalid:focus {
-	box-shadow: 0 0 0.2rem red;
-  }*/
+ 
   imput.error {
 	margin: 0.5em;
 	color: red;
