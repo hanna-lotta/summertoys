@@ -96,7 +96,7 @@ return (
         </button>
       )}
 		<div className="products-container">
-  			{filteredToys.map((toy) => (
+  			{sortedToys.map((toy) => (
 	  <div className="card" key={toy.id}>
 		<h2 className="card-title">{toy.title}</h2>
 		<img className="card-img" src={toy.img} alt={`img-${toy.title}`} />
