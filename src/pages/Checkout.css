@@ -4,9 +4,8 @@
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
-	padding: 1em;
+	padding: 3em;
 	margin: 1em;
 	border: 1px solid #ccc;
-	box-shadow: #0f3040 0.2rem 0.2rem 0.5rem;
 	max-width: 40em;
 }

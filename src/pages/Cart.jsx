@@ -32,12 +32,15 @@ import { shallow } from "zustand/shallow"; // <-- Importera shallow för säkra 
       {cart.length === 0 ? (
         <p>Kundvagnen är tom.</p>
       ) : (
-        cart.map((item) => (
+		<div className="cart-items-list">
+        {cart.map((item) => (
           <div className="cart-items" key={item.id}>
+			<div className="cart-item-info">
             <h2>{item.title}</h2>
             <p className="price">{item.price} kr</p>
 			<p>Antal: {item.quantity}</p>
-			<div>
+			</div>
+			<div className="quantity-buttons">
 			<button className="minus-button"
 			onClick={() => decreaseQuantity(item.id)} // Minska antal
 			>-</button>
@@ -52,7 +55,8 @@ import { shallow } from "zustand/shallow"; // <-- Importera shallow för säkra 
               Ta bort
             </button>
           </div>
-        ))
+        ))}
+		</div>
       )}
 	  <div className="cart-summary">
 	  <h3>Totalt pris: {totalPrice} kr</h3>

@@ -75,10 +75,10 @@ const Edit = () => {
 console.log("toy:", toy, "formIsValid:", formIsValid, "message:", message);
   return (
     <div className='edit'>
-      <h1>Edit Toy</h1>
+      <h1>Ändra</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="title">Title:</label>
+          <label htmlFor="title">Titel:</label>
           <input
 		  	className={css.title} 
             type="text"
@@ -114,7 +114,7 @@ console.log("toy:", toy, "formIsValid:", formIsValid, "message:", message);
 			</div>
 		</div>
         <div>
-          <label htmlFor="description">Description:</label>
+          <label htmlFor="description">Beskrivning:</label>
           <textarea
 		  	className={css.description}
             id="description"
@@ -131,7 +131,7 @@ console.log("toy:", toy, "formIsValid:", formIsValid, "message:", message);
 			</div>
         </div>
         <div>
-          <label htmlFor="price">Price:</label>
+          <label htmlFor="price">Pris:</label>
           <input
 		  	className={css.price}
             type="number"
@@ -151,7 +151,7 @@ console.log("toy:", toy, "formIsValid:", formIsValid, "message:", message);
         <button type="submit"
 			disabled={!formIsValid}
 			
-		>Update Toy</button>
+		>Uppdatera</button>
       </form>
     </div>
   ); 

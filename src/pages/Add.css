@@ -8,7 +8,7 @@
   padding: 1em;
   margin: 1em;
   border: 1px solid #ccc;
-  box-shadow: #0f3040 0.2rem 0.2rem 0.5rem;
+  
   width: 40em;
   text-align: start;
   font-size: 1.2em;
@@ -16,7 +16,7 @@
   background-color: #f9f9f9;
   border-radius: 0.2rem;
   color: #333;
-  transition: background-color 0.3s;
+  
   cursor: pointer;
 
   .add-product:hover {
@@ -98,11 +98,6 @@
 	font-weight: bold;
 	
   }
-  /*
-  :invalid + .error-message {
-	display: block;
-  }*/
-
 }
 
 @media (min-width: 320px) and (max-width: 600px) {
@@ -137,15 +132,6 @@
 	width: 95%;
 	font-size: 1em;
   }
-  /*
-  .add-product input,
-  .add-product textarea,
-  .add-product button {
-    width: 98vw;
-    min-width: 0;
-    font-size: 1em;
-    box-sizing: border-box;
-  }*/
 }
 
 

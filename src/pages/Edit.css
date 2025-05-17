@@ -6,7 +6,7 @@
   justify-self: center;
   padding: 1em;
   margin: 1em;
-  box-shadow: #0f3040 0.2rem 0.2rem 0.5rem;
+  
   width: 40em;
   text-align: center;
   font-size: 1.2em;
@@ -15,7 +15,6 @@
   border: 1px solid #ccc;
   border-radius: 0.2rem;
   color: #333;
-  transition: background-color 0.3s;
   cursor: pointer;
 }
  textarea {
@@ -94,3 +93,47 @@
 	font-weight: bold;
 	
   }
+
+@media (min-width: 320px) and (max-width: 600px) {
+  .edit {
+    width: 98vw;
+    min-width: 0;
+    flex-grow: 1;
+    font-size: 1em;
+    padding: 0.5em;
+    box-sizing: border-box;
+  }
+  textarea {
+	width: 95%;
+	height: 10em;
+	padding: 0.5em;
+	border: 1px solid #ccc;
+	border-radius: 0.2rem;
+	font-size: 1.2em;
+	margin: 0.5em;
+  }
+  label {
+	margin: 0.5em;
+	font-size: 1.2em;
+	font-weight: bold;
+  }
+
+  	input {
+	margin: 0.5em;
+	padding: 0.5em;
+	border: 1px solid #ccc;
+	border-radius: 0.2rem;
+	width: 95%;
+	font-size: 1em;
+  }
+}
+
+
+
+  
+ 
+  
+
+
+
+
