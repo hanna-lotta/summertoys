@@ -28,6 +28,7 @@ const Login = () => {
 
 	const [formData, setFormData] = useState({ username: '', password: '' });
 	const [errors, setErrors] = useState({});
+	const [touched, setTouched] = useState({username: false, password: false});
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -36,6 +37,16 @@ const Login = () => {
 			[name]: value,
 		}));
 	};
+
+
+    const handleBlur = (e) => {
+        const { name } = e.target;
+        setTouched((prev) => ({
+            ...prev,
+            [name]: true,
+        }));
+    };
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		// Validera formulärdata med Joi
@@ -88,10 +99,13 @@ const Login = () => {
 					name="username" 
 					value={formData.username}
 					onChange={handleChange}
+					onBlur={handleBlur}
 					placeholder="Skriv användarnamn här"
 					required 
 					/>
-					{errors.username && <p className="error-message">{errors.username}</p>}
+					 {touched.username && errors.username && (
+                        <p className="error-message">{errors.username}</p>
+                    )}
 				</div>
 				<div>
 					<label htmlFor="password">Lösenord:</label>
@@ -101,10 +115,13 @@ const Login = () => {
 					name="password" 
 					value={formData.password}
 					onChange={handleChange}
+					onBlur={handleBlur}
 					placeholder="Skriv lösenord här"
 					required 
 					/>
-					{errors.password && <p className="error-message">{errors.password}</p>}
+					{touched.password && errors.password && (
+                        <p className="error-message">{errors.password}</p>
+                    )}
 				</div>
 				<button type="submit">Logga in</button>
 			</form>
