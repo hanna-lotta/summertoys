@@ -54,7 +54,7 @@ useEffect(() => {
   
   return (
     <div className="product-details">
-      <h1>{selectedToy.title}</h1> 
+      <h1 className="title-selected">{selectedToy.title}</h1> 
       <img className="img-selected" src={selectedToy.img} alt={`Bild på ${selectedToy.title}`} />
       <p className="price-selected">Pris: {selectedToy.price} kr</p>
       <p className="description-selected">Beskrivning: {selectedToy.description || 'Ingen beskrivning tillgänglig.'}</p>

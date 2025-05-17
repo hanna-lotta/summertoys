@@ -9,7 +9,6 @@
 		align-self: center;
 		width: 100%;
 		gap: 1em;
-		/*margin: 2em;*/
 		box-sizing: border-box;
 		align-items: stretch;
 	}
@@ -17,7 +16,6 @@
 	.card {
 		display: flex;
 		flex-direction: column;
-		
 		width: 90%;
 		max-width: 20em;
 		min-width: 0;
@@ -106,11 +104,12 @@
 		margin-bottom: 1em;
 	}
 	.search {
-		max-width: 100%;
+		max-width: 30em;
+		width: 100%;
+		margin: 2em auto 1em auto;
 		height: 4em;
 		padding-top: 2em;
 		
-		padding-left: 0.5em;
 		margin-bottom: 1em;
 		display: flex;
 		justify-content: center;
@@ -123,7 +122,8 @@
 		border-radius: 0.5em;
 		border: 1px solid #ccc;
 		font-size: 1em;
-		margin-left: 1em;
+		
+		align-self: center;
 	}
 	
 	.search input:focus {
@@ -131,10 +131,11 @@
 		
 	}
 	.sort {
-		max-width: 100%;
+		max-width: 30em;
+		width: 100%;
+		margin: 2em auto 1em auto;
 		height: 4em;
 		
-		padding-left: 2em;
 		margin-bottom: 1em;
 		display: flex;
 		justify-content: center;
@@ -147,7 +148,7 @@
 		border-radius: 0.5em;
 		border: 1px solid #ccc;
 		font-size: 1em;
-		margin-left: 1em;
+		
 	}
 	.add-button {
 		display: flex;
@@ -216,6 +217,13 @@
 		box-sizing: border-box;
 		
 	}
+	.card-title {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		align-self: center;
+		text-align: center;
+	}
 	.search {
 		display: flex;
 		flex-direction: column;
@@ -231,8 +239,9 @@
 		font-size: 1em;
 	}
 	.search input {
-		margin-left: 0;
+		margin: 0 auto;
 		width: 50%;
+		display: block;
 	}
 	.sort {
 		display: flex;
@@ -249,10 +258,11 @@
 		font-size: 1em;
 	}
 	.sort select {
-		margin-left: 0;
+		margin: 0 auto;
 		width: 50%;
+		display: block;
 	}
-
+	
 	
 }
 
@@ -273,8 +283,10 @@
 		font-size: 1em;
 	}
 	.search input {
-		margin-left: 0;
+		margin: 0 auto;
 		width: 50%;
+		display: block;
+		
 	}
 	.sort {
 		display: flex;
@@ -291,10 +303,12 @@
 		font-size: 1em;
 	}
 	.sort select {
-		margin-left: 0;
-		width: 40%;
+		margin: 0 auto;
+		width: 50%;
+		display: block;
+		
 	}
-
+	
 	.products-container {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
@@ -372,6 +386,47 @@
 			text-align: center;
 		}
 	}
+	.search {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		align-self: center;
+	}
+	.search label {
+		margin-bottom: 0.3em;
+		margin-right: 0;
+		display: block;
+		align-self: center;
+		text-align: left;
+		font-size: 1em;
+	}
+	.search input {
+		margin: 0 auto;
+		width: 100%;
+		display: block;
+		
+	}
+	.sort {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		padding-left: 0.2em;
+	}
+	.sort label {
+		margin-bottom: 0.3em;
+		margin-right: 0;
+		display: block;
+		text-align: left;
+		align-self: center;
+		font-size: 1em;
+	}
+	.sort select {
+		margin: 0 auto;
+		width: 100%;
+		display: block;
+		
+	}
+	
 }
 
 /* ≥ 1024px: 4 kolumner */
@@ -402,5 +457,46 @@
 			white-space: nowrap;
 		}
 	}
+	.search {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		align-self: center;
+	}
+	.search label {
+		margin-bottom: 0.3em;
+		margin-right: 0;
+		display: block;
+		align-self: center;
+		text-align: left;
+		font-size: 1em;
+	}
+	.search input {
+		margin: 0 auto;
+		width: 100%;
+		display: block;
+		
+	}
+	.sort {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		
+	}
+	.sort label {
+		margin-bottom: 0.3em;
+		margin-right: 0;
+		display: block;
+		text-align: left;
+		align-self: center;
+		font-size: 1em;
+	}
+	.sort select {
+		margin: 0 auto;
+		width: 100%;
+		display: block;
+		
+	}
+	
 }
 

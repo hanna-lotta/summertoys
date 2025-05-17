@@ -24,7 +24,8 @@
 	border: 1px solid #ccc;
 	border-radius: 0.2rem;
 	font-size: 1.2em;
-	margin: 0.5em;
+	margin: 0.5em auto;
+	display: block;
   }
   label {
 	margin: 0.5em;
@@ -33,12 +34,15 @@
   }
 
   	input {
-	margin: 0.5em;
+	margin: 0.5em auto;
 	padding: 0.5em;
 	border: 1px solid #ccc;
 	border-radius: 0.2rem;
 	width: 95%;
 	font-size: 1em;
+	display: block;
+  }
+   input.error {
   }
    input.invalid,
   textarea.invalid {
@@ -102,6 +106,11 @@
     font-size: 1em;
     padding: 0.5em;
     box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	
   }
   textarea {
 	width: 95%;
@@ -110,7 +119,8 @@
 	border: 1px solid #ccc;
 	border-radius: 0.2rem;
 	font-size: 1.2em;
-	margin: 0.5em;
+	margin: 0.5em auto;
+	justify-self: center;
   }
   label {
 	margin: 0.5em;
@@ -119,13 +129,20 @@
   }
 
   	input {
-	margin: 0.5em;
+	margin: 0.5em auto;
 	padding: 0.5em;
 	border: 1px solid #ccc;
 	border-radius: 0.2rem;
 	width: 95%;
-	font-size: 1em;
+	font-size: 1.4em;
+	display: block;
+	justify-self: center;
   }
+  /*
+   input.error {
+  }
+   input.invalid {
+  }*/
 }
 
 

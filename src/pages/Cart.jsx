@@ -60,8 +60,8 @@ import { shallow } from "zustand/shallow"; // <-- Importera shallow för säkra 
       )}
 	  <div className="cart-summary">
 	  <h3>Totalt pris: {totalPrice} kr</h3>
-      <Link to="/products" className="page-buttons">Tillbaka</Link>
 	  <Link to="/checkout" className="page-buttons">Betala</Link>
+      <Link to="/products" className="page-buttons">Tillbaka</Link>
 	  </div>
     </div>
   );
