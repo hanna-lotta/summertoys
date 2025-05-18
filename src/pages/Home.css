@@ -60,7 +60,7 @@
   }
   .home .home-img {
 	width: 80vw;
-	max-height: 40vh;
+	max-height: 50vh;
 	
   }
 }
@@ -75,7 +75,7 @@
   }
   .home .home-img {
     width: 90vw;
-    max-height: 30vh;
+    max-height: 50vh;
 	
   }
 }
@@ -91,7 +91,7 @@
   }
   .home .home-img {
     width: 98vw;
-    max-height: 25vh;
+    max-height: 60vh;
 	
   }
   .home .go-to-shop {
