@@ -16,10 +16,10 @@ import { shallow } from "zustand/shallow"; // <-- Importera shallow för säkra 
 	const removeFromCart = useCartStore(state => state.removeFromCart);
 	const decreaseQuantity = useCartStore(state => state.decreaseQuantity);
 	const getTotalPrice = useCartStore(state => state.getTotalPrice);
-	//const clearCart = useCartStore(state => state.clearCart);
+	const clearCart = useCartStore(state => state.clearCart);
 	const getCartCount = useCartStore(state => state.getCartCount);
 	const getItemQuantity = useCartStore(state => state.getItemQuantity);
-	//const setSelectedToy = useToyStore(state => state.setSelectedToy); // Ta bort om den inte behövs  
+	
 
  	const totalPrice = getTotalPrice();
   
@@ -42,15 +42,15 @@ import { shallow } from "zustand/shallow"; // <-- Importera shallow för säkra 
 			</div>
 			<div className="quantity-buttons">
 			<button className="minus-button"
-			onClick={() => decreaseQuantity(item.id)} // Minska antal
+			onClick={() => decreaseQuantity(item.id)} 
 			>-</button>
 			<button className="plus-button" 
-			onClick={() => addToCart(item)} // Öka antal
+			onClick={() => addToCart(item)} 
 			>+</button>
 			</div>
             <button
               className="page-buttons"
-              onClick={() => removeFromCart(item.id)} // Ta bort från kundvagn
+              onClick={() => removeFromCart(item.id)} 
             >
               Ta bort
             </button>
@@ -60,7 +60,9 @@ import { shallow } from "zustand/shallow"; // <-- Importera shallow för säkra 
       )}
 	  <div className="cart-summary">
 	  <h3>Totalt pris: {totalPrice} kr</h3>
-	  <Link to="/checkout" className="page-buttons">Betala</Link>
+	  <Link to="/checkout" className="page-buttons"
+	  onClick={clearCart}
+	  >Betala</Link>
       <Link to="/products" className="page-buttons">Tillbaka</Link>
 	  </div>
     </div>
