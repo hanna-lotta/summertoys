@@ -1,19 +1,11 @@
 import './Edit.css';
-import { addDoc, deleteDoc, getDocs, collection, doc } from "firebase/firestore";
-import { db } from "../data/database"; // Importera din Firestore-instans
 import { validateForm } from '../data/Validation';
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useToyStore } from "../data/toyStore";
 import { useParams, useNavigate } from "react-router";
 
 
 const Edit = () => {
-	/*const [formData, setFormData] = useState({
-	title: '',
-	description: '',
-	price: '',
-	img: '',
-	});*/
 	const [toy, setToy] = useState(null);
 	const [touched, setTouched] = useState({});
 	
@@ -23,11 +15,11 @@ const Edit = () => {
 	const [errors, setErrors] = useState({});
 	
 	
-	const { id } = useParams(); // Hämta leksakens ID från URL:en
+	const { id } = useParams(); 
 	const navigate = useNavigate();
 	
-	const toys = useToyStore((state) => state.toys); // Hämta den valda leksaken från Zustand
-	const updateToy = useToyStore((state) => state.updateToy); // Hämta updateToy-funktionen från Zustand
+	const toys = useToyStore((state) => state.toys); 
+	const updateToy = useToyStore((state) => state.updateToy); 
 	
 	console.log("toys:", toys);
 	console.log("updateToy:", updateToy);
@@ -60,8 +52,8 @@ const Edit = () => {
 		});
 		if (formIsValid) {
 			try {
-				await updateToy(toy); // Uppdatera leksaken i Firestore och Zustand
-				navigate("/products"); // Navigera tillbaka till produktsidan
+				await updateToy(toy); 
+				navigate("/products"); 
 			} catch (err) {
 				console.error('Ett fel uppstod vid ändring av produkt:', err);
 			}

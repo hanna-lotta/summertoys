@@ -10,8 +10,8 @@
 	padding: 1em;
 	width: 95vw;
 	max-width: 35em;
-	text-decoration: none; /* Ta bort understrykning */
-  	color: inherit; /* Behåll textfärgen */
+	text-decoration: none; 
+  	color: inherit; 
 	box-sizing: border-box;
 
 	.cart-items-list {

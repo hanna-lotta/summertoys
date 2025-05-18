@@ -22,7 +22,7 @@ const Header = () => {
       <div className="cart-div">
         <Link to="/cart">
           <img className="cart-img" src={cart} alt="cart" />
-          <span className="cart-count">{cartCount}</span> {/* Antal varor */}
+          <span className="cart-count">{cartCount}</span> 
         </Link>
       </div>
     </header>

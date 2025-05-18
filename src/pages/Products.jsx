@@ -1,6 +1,6 @@
-import { Link, NavLink, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import './Products.css';	
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useToyStore } from '../data/toyStore.js'; 
 import { useCartStore } from '../data/cartStore.js'; 
 import {useLogInStore} from '../data/LoginStore';
@@ -42,21 +42,20 @@ const ToyList = () => {
   	return <div>Ett fel uppstod: {error}</div>;
   }
 
-    // Filtrera leksaker baserat på sökfrågan
 	const filteredToys = toys.filter((toy) =>
 		toy.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
 		toy.description.toLowerCase().includes(searchQuery.toLowerCase())
 	  );
 
-	  // Sortera leksaker baserat på sorteringsalternativ
+	  
   const sortedToys = [...filteredToys].sort((a, b) => {
-    if (sortOption === 'name-asc') {
+    if (sortOption === 'name-ascending') {
       return a.title.localeCompare(b.title);
-    } else if (sortOption === 'name-desc') {
+    } else if (sortOption === 'name-descending') {
       return b.title.localeCompare(a.title);
-    } else if (sortOption === 'price-asc') {
+    } else if (sortOption === 'price-ascending') {
       return a.price - b.price;
-    } else if (sortOption === 'price-desc') {
+    } else if (sortOption === 'price-descending') {
       return b.price - a.price;
     }
     return 0;
@@ -102,7 +101,7 @@ return (
 		<img className="card-img" src={toy.img} alt={`img-${toy.title}`} />
 		<p className="price">{toy.price} kr</p>
 		<Link to={`/products/${toy.id}`} className="details-link"
-		onClick={() => setSelectedToy(toy)} // Sätt vald produkt
+		onClick={() => setSelectedToy(toy)} 
 		>Läs mer</Link>
 		<div className="page-buttons-container">
 		<button onClick={() => addToCart(toy)} className="page-buttons">Lägg till</button>

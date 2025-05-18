@@ -85,7 +85,6 @@ const Add = () => {
 					onChange={handleChange}
 					onBlur={handleBlur}
 					placeholder="Skriv bildlänk här"
-					//pattern="https?://.+\.(jpg|jpeg|png|gif)$"
 					required />
 					<div>
 						{touched.img && message.img && (

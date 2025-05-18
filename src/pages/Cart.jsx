@@ -1,10 +1,7 @@
 import { Link } from "react-router"
-//import { ProductsList } from "../data/ProductsStore"
-//import { useProductStore } from "../data/ProductsStore";
 import './Cart.css'
-import { useToyStore } from "../data/toyStore";
 import { useCartStore } from "../data/cartStore";
-import { shallow } from "zustand/shallow"; // <-- Importera shallow för säkra selektorer
+
 
 
 

@@ -362,7 +362,7 @@
 }
 
 
-/* ≥ 768px: 3 kolumner */
+/*  3 kolumner */
 @media (min-width: 851px) {
 	.products-container {
 		grid-template-columns: repeat(3, 1fr);
@@ -439,7 +439,7 @@
 	
 }
 
-/* ≥ 1024px: 4 kolumner */
+/*  4 kolumner */
 @media (min-width: 1100px) {
 	.products-container {
 		grid-template-columns: repeat(4, 1fr);

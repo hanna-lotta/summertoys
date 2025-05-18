@@ -1,7 +1,5 @@
 import Joi from 'joi';
 import './Login.css';
-import { validateForm } from '../data/Validation';
-//import { useToyStore } from '../data/toyStore.js';
 import { useLogInStore } from '../data/LoginStore';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
@@ -74,7 +72,7 @@ const Login = () => {
 	
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// Validera formulärdata med Joi
+		
 		const { error } = schema.validate(formData, { abortEarly: false });
 		if (error) {
 			const validationErrors = {};
@@ -93,7 +91,7 @@ const Login = () => {
 			return;
 		}
 		
-		// Kontrollera om användarnamn och lösenord är rätt
+		
 		if (
 			formData.username !== "admin" ||
 			formData.password !== "password"
@@ -105,7 +103,7 @@ const Login = () => {
 			return;
 		}
 		
-		setErrors({}); // Rensa eventuella tidigare fel
+		setErrors({}); 
 		loginAsAdmin(); 
 		navigate("/products"); 
 	};

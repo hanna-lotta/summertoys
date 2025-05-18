@@ -27,7 +27,7 @@ function validateForm(data, touched = {}) {
 		img: '',		
 	}
 
-// Sätt valid endast om touched och INGET fel för det fältet
+
   if (touched.title && (!results.error || !results.error.details.some(e => e.context.key === 'title'))) {
     css.title = 'valid';
   }
@@ -51,7 +51,7 @@ function validateForm(data, touched = {}) {
 	 if (results.error) {
         results.error.details.forEach(element => {
             const key = element.context.key;
-            if (!touched[key]) return; // Bara om fältet är touched
+            if (!touched[key]) return; 
 
             css[key] = 'invalid';
 
