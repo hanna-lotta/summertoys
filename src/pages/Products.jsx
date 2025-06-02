@@ -83,10 +83,10 @@ return (
           onChange={(e) => setSortOption(e.target.value)}
         >
           <option value="">Ingen sortering</option>
-          <option value="name-asc">Namn (A-Ö)</option>
-          <option value="name-desc">Namn (Ö-A)</option>
-          <option value="price-asc">Pris (Lägst först)</option>
-          <option value="price-desc">Pris (Högst först)</option>
+          <option value="name-ascending">Namn (A-Ö)</option>
+          <option value="name-descending">Namn (Ö-A)</option>
+          <option value="price-ascending">Pris (Lägst först)</option>
+          <option value="price-descending">Pris (Högst först)</option>
         </select>
       </div>
 		{isAdmin && (
